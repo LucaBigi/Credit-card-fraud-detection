@@ -62,6 +62,12 @@ The workflow followed these steps:
 | **True 0**    | 56858       | 6           |
 | **True 1**    | 21          | 77          |
 
+#### Precision-Recall Curve - Single Model
+![Precision Recall Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/Precision-Recall%20Curve_single.png)
+
+#### ROC Curve - Single Model
+![ROC Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/ROC%20curve_single.png)
+
 ### Ensemble Model (SVM + CatBoost + Random Forest, SMOTE 0.1)
 
 - **Validation** → Precision 0.87 | Recall 0.85 | AUC 0.99 | AP 0.84 
@@ -78,14 +84,13 @@ The workflow followed these steps:
 | **True 0**    | 56852       | 12          |
 | **True 1**    | 18          | 80          |
 
-**Trade-off**: the ensemble improved recall but required significantly higher computational cost, while CatBoost provided the best balance between performance and efficiency.  
-
-#### Precision-Recall Curve
+#### Precision-Recall Curve - Ensemble Model
 ![Precision Recall Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/Precision-Recall%20Curve_ensemble.png)
 
-#### ROC Curve
+#### ROC Curve - Ensemble Model
 ![ROC Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/ROC%20curve_ensemble.png)
 
+**Trade-off**: the ensemble improved recall but required significantly higher computational cost, while CatBoost provided the best balance between performance and efficiency.  
 
 ---
 
