@@ -80,6 +80,13 @@ The workflow followed these steps:
 
 **Trade-off**: the ensemble improved recall but required significantly higher computational cost, while CatBoost provided the best balance between performance and efficiency.  
 
+#### Precision-Recall Curve
+![Precision Recall Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/Precision-Recall%20Curve_ensemble.png)
+
+#### ROC Curve
+![ROC Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/ROC%20curve_ensemble.png)
+
+
 ---
 
 ## Repository Contents
