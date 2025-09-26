@@ -48,7 +48,7 @@ The workflow followed these steps:
 
 ### Single Model (CatBoost, SMOTE 0.3)
 
-- **Validation** → Precision 0.93 | Recall 0.83
+- **Validation** → Precision 0.93 | Recall 0.83 | AUC 0.97 | AP 0.84  
 
 |               | Predicted 0 | Predicted 1 |
 |---------------|-------------|-------------|
@@ -61,6 +61,7 @@ The workflow followed these steps:
 |---------------|-------------|-------------|
 | **True 0**    | 56858       | 6           |
 | **True 1**    | 21          | 77          |
+
 
 #### Precision-Recall Curve - Single Model
 ![Precision Recall Curve](Credit%20card%20fraud%20detection%20models/Generated%20plots/Precision-Recall%20Curve_single.png)
@@ -77,7 +78,7 @@ The workflow followed these steps:
 | **True 0**    | 45480       | 10          |
 | **True 1**    | 12          | 67          |
 
-- **Test**       → Precision 0.87 | Recall 0.82 | AUC 0.98 | AP 0.83
+- **Test**       → Precision 0.87 | Recall 0.82
 
 |               | Predicted 0 | Predicted 1 |
 |---------------|-------------|-------------|
