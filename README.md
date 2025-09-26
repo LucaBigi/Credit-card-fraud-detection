@@ -1,4 +1,4 @@
-# Credit Card Fraud Detection 
+# Credit Card Fraud Detection
 
 ## Abstract
 This project explores fraud detection on the **Kaggle Credit Card Fraud Detection dataset**.  
