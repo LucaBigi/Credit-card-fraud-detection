@@ -101,7 +101,7 @@ The workflow followed these steps:
 
 3. Run one of the model scripts:
    - "single_model.py" → trains and evaluates the CatBoost classifier.
-   - "ensemble:model.py" → trains and evaluates the SVM + CatBoost + Random Forest ensemble.
+   - "ensemble_model.py" → trains and evaluates the SVM + CatBoost + Random Forest ensemble.
 Both scripts print metrics and generate evaluation plots (Confusion Matrix, ROC curve, Precision-Recall curve).
 
 ---
