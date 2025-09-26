@@ -48,14 +48,14 @@ The workflow followed these steps:
 
 ### Single Model (CatBoost, SMOTE 0.3)
 
-- **Validation** → Precision 0.93 | Recall 0.83 | AUC 0.97 | AP 0.84  
+- **Validation** → Precision 0.93 | Recall 0.83
 
 |               | Predicted 0 | Predicted 1 |
 |---------------|-------------|-------------|
 | **True 0**    | 45485       | 5           |
 | **True 1**    | 13          | 66          |
 
-- **Test**       → Precision 0.93 | Recall 0.79 | AUC 0.98 | AP 0.83 
+- **Test**       → Precision 0.93 | Recall 0.79
 
 |               | Predicted 0 | Predicted 1 |
 |---------------|-------------|-------------|
