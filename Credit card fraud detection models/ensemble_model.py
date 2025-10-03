@@ -70,7 +70,7 @@ X_test_original=test_df[FEATURES].to_numpy()
 true_y_test = test_df[target_column].to_numpy()
 
 ################ IDENTIFICO EVENTI DENTRO E FUORI DAL MARGINE DELLA SVM PER ESEGUIRE TRAINING MIRATI
-print ("training SVM per separazione inside/outside")
+print ("Separazione inside/outside")
 model1.fit(X_train, y_train)
 inside_margin_train, outside_margin_train = margin_split(model1, X_scaled)
 inside_margin_val, outside_margin_val = margin_split(model1, X_val, scaler=scaler)
@@ -85,8 +85,8 @@ n_models = len(models)
 predictions_all_train = np.zeros((len(X_original), n_models))
 predictions_val = np.zeros((len(X_val), n_models))
 predictions_test = np.zeros((len(X_test_original), n_models))
-X_inside_scaled = scaler_inside.fit_transform(X_original[inside_margin_train].copy())
-X_outside_scaled = scaler_outside.fit_transform(X_original[outside_margin_train].copy())
+X_scaled[inside_margin_train] = scaler_inside.fit_transform(X_original[inside_margin_train].copy())
+X_scaled[outside_margin_train] = scaler_outside.fit_transform(X_original[outside_margin_train].copy())
 
 for j, (name, model) in enumerate(models):
 
@@ -96,11 +96,12 @@ for j, (name, model) in enumerate(models):
     balanced_inside_idx = get_balanced_indices_bin(X_bin, y_original, inside_margin_train, seme)
     balanced_outside_idx = get_balanced_indices_bin(X_bin, y_original, outside_margin_train, seme)
 
+
     #INSIDE MARGIN
-    X_train_inside = scaler_inside.transform(X_original[balanced_inside_idx].copy()) 
+    X_train_inside = X_scaled[balanced_inside_idx].copy()
     y_train_inside = y_original[balanced_inside_idx].copy()
     model.fit(X_train_inside, y_train_inside)
-    predictions_all_train[inside_margin_train, j] = model.predict_proba(X_inside_scaled)[:, 1]
+    #predictions_all_train[inside_margin_train, j] = model.predict_proba(X_scaled[inside_margin_train] )[:, 1]
 
     X_val_inside = scaler_inside.transform(X_val[inside_margin_val].copy())
     predictions_val[inside_margin_val, j] = model.predict_proba(X_val_inside)[:, 1]
@@ -112,7 +113,7 @@ for j, (name, model) in enumerate(models):
     X_train_outside = scaler_outside.transform(X_original[balanced_outside_idx].copy()) 
     y_train_outside = y_original[balanced_outside_idx].copy()
     model.fit(X_train_outside, y_train_outside)
-    predictions_all_train[outside_margin_train, j] = model.predict_proba(X_outside_scaled)[:, 1]
+    #predictions_all_train[outside_margin_train, j] = model.predict_proba(X_scaled[outside_margin_train] )[:, 1]
 
     X_val_outside = scaler_outside.transform(X_val[outside_margin_val].copy())
     predictions_val[outside_margin_val, j] = model.predict_proba(X_val_outside)[:, 1]
@@ -121,7 +122,7 @@ for j, (name, model) in enumerate(models):
     predictions_test[outside_margin_test, j] = model.predict_proba(X_test_outside)[:, 1]
 
 
-final_predictions_train = predictions_all_train.mean(axis=1)
+#final_predictions_train = predictions_all_train.mean(axis=1)
 final_predictions_val = predictions_val.mean(axis=1)
 final_predictions_test = predictions_test.mean(axis=1)
 
@@ -136,9 +137,9 @@ fbeta_scores_out = (1 + beta**2) * (precision_vals_out * recall_vals_out) / (bet
 best_idx_out = np.argmax(fbeta_scores_out)
 FILTRO_outside = thresholds_out[best_idx_out]
 
-models_predictions_train= final_predictions_train.copy()
-models_predictions_train[inside_margin_train] = np.where(final_predictions_train[inside_margin_train] >= FILTRO_inside, 1, 0)
-models_predictions_train[outside_margin_train] = np.where(final_predictions_train[outside_margin_train] >= FILTRO_outside, 1, 0)
+#models_predictions_train= final_predictions_train.copy()
+#models_predictions_train[inside_margin_train] = np.where(final_predictions_train[inside_margin_train] >= FILTRO_inside, 1, 0)
+#models_predictions_train[outside_margin_train] = np.where(final_predictions_train[outside_margin_train] >= FILTRO_outside, 1, 0)
 
 models_predictions_val = final_predictions_val.copy()
 models_predictions_val[inside_margin_val] = np.where(final_predictions_val[inside_margin_val] >= FILTRO_inside, 1, 0)
