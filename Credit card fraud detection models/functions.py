@@ -72,9 +72,9 @@ def margin_split(model, X, scaler=None):
     if scaler is not None:
         X = scaler.transform(X)
     abs_decision = np.abs(model.decision_function(X))
-    inside = np.where(abs_decision < 1)[0]
-    outside = np.where(abs_decision >= 1)[0]
-
+    mask = abs_decision < 1
+    inside  = np.flatnonzero(mask)    # punti dentro il margine
+    outside = np.flatnonzero(~mask)   # punti fuori dal margine
     return inside, outside
 
 def evaluate_model_performance(y_true, y_pred, y_prob, set_name=""):
